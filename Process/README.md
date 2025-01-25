@@ -45,3 +45,18 @@ Next:
 - What could the hidden information on the screen be? It would have to use MIRA-compatible objects, but this is probably a good constraint to be working in.
 - Make the touchpoint options variable so the players can create dots, lines, triangles, polygons, and pentagons
 - Test out the feasibility of both MIRA instances painting on the same canvas. Or on overlapping canvasses?
+
+## MIRA Tests Stage 2 | 01.23.25
+
+Mocked up a fairly simple test to see how feasible this is going to be moving forward. We need to switch away from the LCD object and use jit.op to combine the two inputs, which sets up the possibility of some really interesting combinations. The addition operator is the most obvious choice here, but what might this look like with all of the other operators (-/*!&&). If we decide to move forward this setup, it would be beneficial to record a few videos of the shapes being made, to test these different operators (quite hard to make shapes with both hands while selecting through the operator options!)
+
+![Experiment with single canvas](Media/matrixOPtest.gif)
+
+Thoughts:
+- What is the best way to know when the user(s) have put their fingers in thr right locations? Should we calculate the distance between a given location and the nearest finger? Seems a little overcomplicated. We had discussed using the button object. Is that a cheap and fast solution? Can you make them invisible? 
+- If this is the case, how would we switch between those grid locations (i.e you solved this shape, here's the next one)
+- Similarly, how can we communicate the shapes to be made? If we add a third canvas that is the desired shape, does this break the jit.op combination? I don't believe it does, but worth testing.
+
+Next:
+- Test a version with invisible buttons
+- Can we use a message box to load new button locations to the mira.frame objects?
