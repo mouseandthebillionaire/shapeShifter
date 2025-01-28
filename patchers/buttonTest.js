@@ -1,50 +1,48 @@
 inlets = 3;
 outlets = 1;
-
 var numPoints = 3;
-
-var buttonStates = [0, 0, 0];
-var allPressed = false;
+var targetX = [164, 550, 897];
+var targetY = [689, 75, 697];
+var targetHit = [0, 0, 0];  // Tracks which targets have been hit
 var x = [0, 0, 0];
 var y = [0, 0, 0];
 var press = [0, 0, 0];
-var on = [0, 0, 0];
-
-var targetX = [245, 600, 940];
-var targetY = [600, 115, 600];
-var xDist = [100, 100, 100];
-var yDist = [100, 100, 100];
 
 function list() {
-
-	x[inlet] = arguments[0];
-	y[inlet] = arguments[1];
-	press[inlet] = arguments[2];
-	
-	if(press[inlet] >= 1){	
-		xDist[inlet] = Math.abs(targetX[inlet] - x[inlet]);
-		yDist[inlet] = Math.abs(targetY[inlet] - y[inlet]);
-		post(xDist[inlet] + ":" + yDist[inlet] + "\n");
-		
-		if(xDist[inlet] < 100 && yDist[inlet] < 100){
-			on[inlet] = 1;
-			post("on it!");
-			checkStates();
-		} else {
-			on[inlet] = 0;
-		}
-	} else {
-		on[inlet] = 0;
-	} 
-	checkStates();
-	
+    x[inlet] = arguments[0];
+    y[inlet] = arguments[1];
+    press[inlet] = arguments[2];
+    
+    // Reset all hits before checking
+    targetHit = [0, 0, 0];
+    
+    // Check each pressed finger against all targets
+    for (var i = 0; i < numPoints; i++) {
+        if (press[i] >= 1) {
+            // Check this finger against all targets
+            for (var target = 0; target < numPoints; target++) {
+                var xDist = Math.abs(targetX[target] - x[i]);
+                var yDist = Math.abs(targetY[target] - y[i]);
+                
+                // If this finger is close enough to this target, mark it as hit
+                if (xDist < 80 && yDist < 80) {
+                    targetHit[target] = 1;
+                    //post("Target " + target + " hit!\n");
+                    break;  // Only let each finger hit one target
+                }
+            }
+        }
+    }
+    
+    checkStates();
 }
 
-function checkStates(){
-	if(on[0] == 1 && on[1] == 1 && on[2] == 1){
-		post("boom!");
-		outlet(0, 1);
-	} else {
-		outlet(0, 0);
-	}	
+function checkStates() {
+    // Check if all targets have been hit
+    if (targetHit[0] == 1 && targetHit[1] == 1 && targetHit[2] == 1) {
+        post("boom!\n");
+        outlet(0, 1);
+    } else {
+        outlet(0, 0);
+    }
 }
