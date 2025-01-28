@@ -32,7 +32,7 @@ The first question we run up against is the hardware feasibility of some of this
 
 ![Test MIRA patch to show multi-touch functionality](Media/miraTest.gif)
 
-It works! We are able to get usr input on two separate iPads. Right now they are making shapes on separate lcd objects, so there will definitely be some finagling required to make them work seamlessly together, but it is definitely possible. There are some issues that crop up though...
+It works! We are able to get user input on two separate iPads. Right now they are making shapes on separate lcd objects, so there will definitely be some finagling required to make them work seamlessly together, but it is definitely possible. There are some issues that crop up though...
 
 - MIRA doesn't display the lcd (or any visual) object, so there is no way to update the visuals on the actual iPad. This is probably fine, and the players would just need to look at the shared screen to see what they are doing. This does raise the possibility for _different_ hidden information to be visible on the individual screens. This could be messages, shapes, colors, etc. Ideation later to think about this.
 - In the current implementation there is no dynamic ability to change the number of finger inputs (it's always looking for 4) which isn't ideal.
@@ -60,3 +60,17 @@ Thoughts:
 Next:
 - Test a version with invisible buttons
 - Can we use a message box to load new button locations to the mira.frame objects?
+
+## MIRA Tests Stage 3 | 01.28.25
+
+The buttons did not work because Max buttons don't have any indicator for release (or hold). So instead this version uses a javascript object that takes the inputs and determines what type of shape should be drawn. Additionally, another javascript object takes those three inputs and determines how close they are to three target locations. Those target locations are hard-coded into the javascript, but we could write a version that takes the target locations as inputs. Not sure what would be the most efficient/easy/helpful way to do this (for game progression) but we have some options.
+
+![MiRA Shapes and 'Location Found' test](Media/shapes_locationFound.gif)
+
+Thoughts:
+- As shown in the gif, the switching between shapes is a bit buggy. The javascript should probably reset more frequently? And then look for fingers that are down (status: 2) But maybe the glitchyness is charming? 
+- Similarly, the way that MIRA works a raised finger doesn't reset the fingers currently pressed down, so we can't easily go from poly to line, etc. Could rewrite the javascript to address this, but maybe it isn't worth it at this stage
+- What would this look like without the touchscreen (if we wanted to make this in Unity instead)? Could the dials control XY locations of the dots on screen (with press) activating certain nodes? Could there be a master dial that selects which node you are controlling? Something to think about.
+- Explored using the * operator for jit.op (below) and there are some fun visual puzzle opportunities that arise.
+
+![MIRA reveal hidden object](Media/revealHiddenObject.gif)
