@@ -74,3 +74,21 @@ Thoughts:
 - Explored using the * operator for jit.op (below) and there are some fun visual puzzle opportunities that arise.
 
 ![MIRA reveal hidden object](Media/revealHiddenObject.gif)
+
+## Meeting Notes | 02.03.25
+
+### Thoughts:
+- Could the button set shape and start new one. That way one user could be in charge of multiple shapes. Possibly too cumbersome, but something to try
+- What if the whole thing was timed? You have to make these little shapes within a specefic time-frame for some reason
+- Could you set the shapes and then use the knob to move shapes? Like a wizard who conjurs shaped and then relocates them on screen
+- Trackball (Severance as precedent)
+- Could the physical input devices be used for zooming? panning? 
+- Using the jit op multiplication you could have the users uncover a more complex image.uncover image. Think about the tangrams more like a hitbox then the actual shape. However, the shape stuff is pretty great, so maybe it's fine to just stick with that
+- Musically we could be using the built-in MIRA regions to have notes be played based on finger location. Could be an easy way to build in some musical elements to the play
+
+### Next:
+- Fix the persistent shapes when lifting / order of placement is erasing them
+- Explore integrating jitter effects?
+- Start building out the sonic aspects based on the MIRA regions
+- Build the structure for switching when the proper shape has been made
+- Why is the color changing every time the user places their fingers down? Weird bug
