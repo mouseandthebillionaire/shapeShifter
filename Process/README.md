@@ -92,3 +92,26 @@ Thoughts:
 - Start building out the sonic aspects based on the MIRA regions
 - Build the structure for switching when the proper shape has been made
 - Why is the color changing every time the user places their fingers down? Weird bug
+
+## MIRA + Jitter
+
+Fixed all this business. Added some Jitter effects. We've got a pretty solid platform on which to start building the "game" part of this thing. 
+
+![Jittery](Media/jitterTest.gif)
+
+## Meeting Notes 02.17.25
+- How do we make this weirder?
+- Sonic input (someone yelling, making noise into the device)
+   - By making the noise you could fill the shape (how do you fill the shape?)
+   - [Mesa di Voce](http://www.flong.com/archive/projects/messa/index.html) as a precedent
+- Speed of "throw" on trackball vs XY location? How might that function?
+- Competitive? Create shape and throw it at the other player?
+- Similar to [Holedown](https://holedown.com) - could you create objects to throw at a "boss"?
+
+### Next
+- Adding UI to iPad screen / can we switch UI schemes?
+- Add a XY pad to simulate trackball control (rollover to fascilate for the "throwing" of the ball)
+- Simulate three potentiometers?
+- Adding the audio capabilities
+- Physics in Max?
+- Physical device prototyping
